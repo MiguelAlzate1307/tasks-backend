@@ -64,7 +64,20 @@ export class UsersService {
   }
 
   findOneByEmail(email: string) {
-    return this.usersRep.findOne({ where: { email } });
+    return this.usersRep.findOne({
+      where: { email },
+      select: [
+        'id',
+        'name',
+        'username',
+        'email',
+        'password',
+        'role',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+      ],
+    });
   }
 
   findOneByUsername(username: string) {

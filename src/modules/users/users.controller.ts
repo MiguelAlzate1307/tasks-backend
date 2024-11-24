@@ -1,9 +1,22 @@
-import { Controller, Get, Body, Patch, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Body,
+  Patch,
+  Param,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { IdParamDto } from 'src/global/dto/id-param.dto';
 import { UsersFilters } from './dto/query/users-filters.dto';
 import { UpdateUserRoleDto } from './dto/update-user-role.dto';
+import { RolesGuard } from 'src/global/guards/roles.guard';
+import { RolesEnum } from './entities/user.entity';
+import { Roles } from 'src/global/decorators/roles.decorator';
 
+@Roles(RolesEnum.ADMIN)
+@UseGuards(RolesGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

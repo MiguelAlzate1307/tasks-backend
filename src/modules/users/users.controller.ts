@@ -6,6 +6,7 @@ import {
   Param,
   Query,
   UseGuards,
+  Delete,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { IdParamDto } from 'src/global/dto/id-param.dto';
@@ -37,5 +38,10 @@ export class UsersController {
     @Body() updateUserRoleDto: UpdateUserRoleDto,
   ) {
     return this.usersService.update(id, updateUserRoleDto);
+  }
+
+  @Delete(':id')
+  remove(@Param() { id }: IdParamDto) {
+    return this.usersService.remove(id);
   }
 }

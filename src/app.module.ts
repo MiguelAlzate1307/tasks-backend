@@ -6,6 +6,7 @@ import { IamModule } from './modules/iam/iam.module';
 import config from './config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAccessGuard } from './modules/iam/guards/jwt-access.guard';
+import { LogsModule } from './modules/logs/logs.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { JwtAccessGuard } from './modules/iam/guards/jwt-access.guard';
     DatabaseModule,
     UsersModule,
     IamModule,
+    LogsModule,
   ],
   providers: [
     {

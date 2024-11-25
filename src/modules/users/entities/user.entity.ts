@@ -1,8 +1,10 @@
+import { Log } from 'src/modules/logs/entities/log.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -31,6 +33,9 @@ export class User {
 
   @Column({ type: 'enum', enum: RolesEnum, default: RolesEnum.USER })
   role: RolesEnum;
+
+  @OneToMany(() => Log, (logs) => logs.user)
+  logs: Log[];
 
   @CreateDateColumn()
   created_at: Date;

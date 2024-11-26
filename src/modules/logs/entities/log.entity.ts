@@ -42,7 +42,7 @@ export class Log {
   @Column({ type: 'int' })
   status: number;
 
-  @Column({ type: 'varchar', length: 100 })
+  @Column({ type: 'text' })
   url: string;
 
   @Column({ type: 'jsonb' })

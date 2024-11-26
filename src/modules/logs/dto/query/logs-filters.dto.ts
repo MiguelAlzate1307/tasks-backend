@@ -22,7 +22,7 @@ export class LogsFilters extends FiltersPaginated {
   @Transform(({ value }: { value: string }) => value.trim())
   @IsOptional()
   @IsUUID()
-  user?: string;
+  user_id?: string;
 
   @IsString()
   @Transform(({ value }: { value: string }) => value.trim())

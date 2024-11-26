@@ -1,5 +1,6 @@
 import { IsInt, IsOptional, IsPositive } from 'class-validator';
 import { Log } from 'src/modules/logs/entities/log.entity';
+import { Task } from 'src/modules/tasks/entities/task.entity';
 import { User } from 'src/modules/users/entities/user.entity';
 import { SelectQueryBuilder } from 'typeorm';
 
@@ -15,7 +16,7 @@ export class FiltersPaginated {
   page?: number;
 
   async getResponsePaginated(
-    query: SelectQueryBuilder<User | Log>,
+    query: SelectQueryBuilder<User | Log | Task>,
     { limit = 10, page = 1, ...filters }: FiltersPaginated,
   ) {
     for (const [key, value] of Object.entries(filters)) {

@@ -7,6 +7,7 @@ import config from './config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAccessGuard } from './modules/iam/guards/jwt-access.guard';
 import { LogsModule } from './modules/logs/logs.module';
+import { TasksModule } from './modules/tasks/tasks.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { LogsModule } from './modules/logs/logs.module';
     UsersModule,
     IamModule,
     LogsModule,
+    TasksModule,
   ],
   providers: [
     {

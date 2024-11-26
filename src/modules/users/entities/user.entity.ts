@@ -1,4 +1,5 @@
 import { Log } from 'src/modules/logs/entities/log.entity';
+import { Task } from 'src/modules/tasks/entities/task.entity';
 import {
   Column,
   CreateDateColumn,
@@ -36,6 +37,9 @@ export class User {
 
   @OneToMany(() => Log, (logs) => logs.user)
   logs: Log[];
+
+  @OneToMany(() => Task, (tasks) => tasks.user)
+  tasks: Task[];
 
   @CreateDateColumn()
   created_at: Date;

@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { Observable, tap } from 'rxjs';
+import { PayloadToken } from 'src/modules/iam/model/token.model';
 import { ActionsEnum } from 'src/modules/logs/entities/log.entity';
 import { LogsService } from 'src/modules/logs/logs.service';
 import { logsMessages } from 'src/modules/logs/messages/logs.messages';
@@ -33,7 +34,9 @@ export class LogsInterceptor implements NestInterceptor {
             user = (await this.usersSer.findOneByEmail(req.body.email)) ?? null;
 
           if (req.user) {
-            ({ user } = await this.usersSer.findOne((req.user as User).id));
+            ({ user } = await this.usersSer.findOne(
+              (req.user as PayloadToken).id,
+            ));
           }
 
           await this.logsSer.create({
@@ -62,7 +65,9 @@ export class LogsInterceptor implements NestInterceptor {
             user = (await this.usersSer.findOneByEmail(req.body.email)) ?? null;
 
           if (req.user) {
-            ({ user } = await this.usersSer.findOne((req.user as User).id));
+            ({ user } = await this.usersSer.findOne(
+              (req.user as PayloadToken).id,
+            ));
           }
 
           await this.logsSer.create({
